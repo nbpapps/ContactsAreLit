@@ -30,6 +30,10 @@
 		E89887E523EC59C700D9507B /* ContactCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89887E423EC59C700D9507B /* ContactCollectionViewCell.swift */; };
 		E89887E723EC5A3900D9507B /* CALLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89887E623EC5A3900D9507B /* CALLabel.swift */; };
 		E89887EA23EC67D100D9507B /* Contact+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89887E923EC67D100D9507B /* Contact+Utils.swift */; };
+		E89887ED23EC9C9200D9507B /* MediaPermitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89887EC23EC9C9200D9507B /* MediaPermitions.swift */; };
+		E89887EF23ECA99A00D9507B /* MediaImport.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89887EE23ECA99A00D9507B /* MediaImport.swift */; };
+		E89887F123ECAF4800D9507B /* UIViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89887F023ECAF4800D9507B /* UIViewController+Utils.swift */; };
+		E89887F323ECC54000D9507B /* UIImage+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89887F223ECC54000D9507B /* UIImage+Utils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +73,10 @@
 		E89887E423EC59C700D9507B /* ContactCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCollectionViewCell.swift; sourceTree = "<group>"; };
 		E89887E623EC5A3900D9507B /* CALLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALLabel.swift; sourceTree = "<group>"; };
 		E89887E923EC67D100D9507B /* Contact+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Contact+Utils.swift"; sourceTree = "<group>"; };
+		E89887EC23EC9C9200D9507B /* MediaPermitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPermitions.swift; sourceTree = "<group>"; };
+		E89887EE23ECA99A00D9507B /* MediaImport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaImport.swift; sourceTree = "<group>"; };
+		E89887F023ECAF4800D9507B /* UIViewController+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Utils.swift"; sourceTree = "<group>"; };
+		E89887F223ECC54000D9507B /* UIImage+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Utils.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +118,7 @@
 		E830F6F123EAE46C00F1E0E0 /* ContactsAreLit */ = {
 			isa = PBXGroup;
 			children = (
+				E89887EB23EC9AD100D9507B /* MediaKit */,
 				E89887E823EC67A800D9507B /* Model */,
 				E89887DF23EC4D4000D9507B /* Utils */,
 				E86CC33023EC095500534ECE /* DataBase */,
@@ -189,6 +198,8 @@
 			children = (
 				E89887E023EC4D5500D9507B /* String+utils.swift */,
 				E89887E223EC58A600D9507B /* UIConfig.swift */,
+				E89887F023ECAF4800D9507B /* UIViewController+Utils.swift */,
+				E89887F223ECC54000D9507B /* UIImage+Utils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -199,6 +210,15 @@
 				E89887E923EC67D100D9507B /* Contact+Utils.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		E89887EB23EC9AD100D9507B /* MediaKit */ = {
+			isa = PBXGroup;
+			children = (
+				E89887EC23EC9C9200D9507B /* MediaPermitions.swift */,
+				E89887EE23ECA99A00D9507B /* MediaImport.swift */,
+			);
+			path = MediaKit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -307,17 +327,21 @@
 				E830F6F723EAE46C00F1E0E0 /* ViewController.swift in Sources */,
 				E86CC33623EC476100534ECE /* CoreDataInterface.swift in Sources */,
 				E830F6F323EAE46C00F1E0E0 /* AppDelegate.swift in Sources */,
+				E89887F123ECAF4800D9507B /* UIViewController+Utils.swift in Sources */,
 				E86CC32F23EC011900534ECE /* CALTextField.swift in Sources */,
 				E89887E123EC4D5500D9507B /* String+utils.swift in Sources */,
 				E830F6F523EAE46C00F1E0E0 /* SceneDelegate.swift in Sources */,
 				E830F6FD23EAE46C00F1E0E0 /* ContactsAreLit.xcdatamodeld in Sources */,
+				E89887ED23EC9C9200D9507B /* MediaPermitions.swift in Sources */,
 				E830F72123EB189B00F1E0E0 /* AddContactViewController.swift in Sources */,
 				E86CC33423EC0AD000534ECE /* Contact+CoreDataProperties.swift in Sources */,
 				E89887E723EC5A3900D9507B /* CALLabel.swift in Sources */,
 				E830F72423EB1CBD00F1E0E0 /* CALImageView.swift in Sources */,
+				E89887EF23ECA99A00D9507B /* MediaImport.swift in Sources */,
 				E830F71D23EB160E00F1E0E0 /* Text.swift in Sources */,
 				E830F72623EB234E00F1E0E0 /* CALButton.swift in Sources */,
 				E89887E323EC58A600D9507B /* UIConfig.swift in Sources */,
+				E89887F323ECC54000D9507B /* UIImage+Utils.swift in Sources */,
 				E86CC33323EC0AD000534ECE /* Contact+CoreDataClass.swift in Sources */,
 				E830F71A23EB027100F1E0E0 /* ContactsViewController.swift in Sources */,
 			);

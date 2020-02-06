@@ -24,13 +24,13 @@ struct CoreDataInterface {
         self.persistentContainer = persistentContainer
     }
     
-    func saveContactWith(name : String,phone : String, email : String?,image : Data?,and completion: @escaping saveCompletion) {
+    func saveContactWith(name : String,phone : String, email : String?,imageData : Data?,and completion: @escaping saveCompletion) {
         persistentContainer.viewContext.perform {
             let contact = Contact(context: self.persistentContainer.viewContext)
             contact.name = name
             contact.phone = phone
             contact.email = email
-            contact.image = image
+            contact.image = imageData
             do {
                 try self.persistentContainer.viewContext.save()
                 completion(nil)

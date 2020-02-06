@@ -33,7 +33,7 @@ final class CALTextField: UITextField {
         layer.borderWidth = Values.textFieldBorderWidth
         layer.borderColor = UIColor(named: Text.mainAppColor)?.cgColor
         
-        textColor = UIColor(named: Text.mainAppColor)
+        textColor = .label
 //        tintColor = .label
         textAlignment = .center
         font = UIFont.preferredFont(forTextStyle: .title2)
@@ -43,5 +43,4 @@ final class CALTextField: UITextField {
         backgroundColor = .tertiarySystemBackground
         autocorrectionType = .no
     }
-    
 }

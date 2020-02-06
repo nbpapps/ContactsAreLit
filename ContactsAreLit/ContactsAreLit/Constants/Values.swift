@@ -14,9 +14,9 @@ struct Values {
     static let numberOfCollectionViewColums = 2
     
     //MARK:- image view
-    static let imageViewCornerRadius : CGFloat = 10
+    static let imageViewCornerRadius : CGFloat = 50
     static let imageViewPadding : CGFloat = 20
-    static let imageViewHeight : CGFloat = 50
+    static let imageViewHeight : CGFloat = 100
     static let imageInImagePadding : CGFloat = 8
     
     //MARK:- button

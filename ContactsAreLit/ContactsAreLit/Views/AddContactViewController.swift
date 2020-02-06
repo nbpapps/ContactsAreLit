@@ -57,6 +57,7 @@ final class AddContactViewController: UIViewController {
     private func configurePlusImageView() {
         plusImageView = CALImageView(image:  UIImage(systemName: Text.addPhoto)!)
         view.addSubview(plusImageView)
+//        view.bringSubviewToFront(plusImageView)
     }
     
     private func configureSelectPhotoButton() {
@@ -93,10 +94,11 @@ final class AddContactViewController: UIViewController {
     private func layoutView() {
         NSLayoutConstraint.activate([
             contactImageView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: Values.imageViewPadding),
-            contactImageView.heightAnchor.constraint(equalTo: contactImageView.widthAnchor),
+            contactImageView.heightAnchor.constraint(equalToConstant: Values.imageViewHeight),
+            contactImageView.widthAnchor.constraint(equalTo: contactImageView.heightAnchor),
             contactImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
-            plusImageView.leadingAnchor.constraint(equalTo: contactImageView.leadingAnchor, constant: Values.imageInImagePadding),
+            plusImageView.trailingAnchor.constraint(equalTo: contactImageView.leadingAnchor, constant: -20),
             plusImageView.bottomAnchor.constraint(equalTo: contactImageView.bottomAnchor, constant: -Values.imageInImagePadding),
             
             selectPhotoButton.topAnchor.constraint(equalTo: contactImageView.topAnchor),
@@ -124,7 +126,18 @@ final class AddContactViewController: UIViewController {
     
     //MARK:-actions
     @objc private func selectContactImageButtonTapped() {
-        print("selectContactImageButtonPressed")
+        let mediaPermissions = MediaPermissions()
+        mediaPermissions.checkPhotoLibraryPermission {[weak self] (photoPermition) in
+            switch photoPermition {
+            case .authorized:
+                DispatchQueue.main.async {
+                    self?.showPhotoLibrary()
+                }
+            case .unauthorized:
+                print("no permission to select photos")
+            }
+            
+        }
     }
     
     @objc private func saveButtonTapped() {
@@ -132,16 +145,28 @@ final class AddContactViewController: UIViewController {
     }
     
     @objc private func cancelButtonTapped() {
-        print("cancelButtonPressed")
         dismiss(animated: true, completion: nil)
     }
     
-    func saveContact() {
+    private func showPhotoLibrary() {
+        let mediaImport = MediaImport()
+        add(mediaImport)
+        mediaImport.openPhotoLibrary()
+        mediaImport.onImageSelect = { [weak self] image in
+            mediaImport.remove()
+            DispatchQueue.main.async {
+                self?.contactImageView.image = image
+            }
+        }
+    }
+    
+    private func saveContact() {
         let name = nameTextField.text
         let phone = phoneTextField.text
         let email = emailTextField.text
+        let imageData = contactImageView.image?.imageData
         
-        coreDataInterface.saveContactWith(name: name!, phone: phone!, email: email, image: nil) {[weak self] (error) in
+        coreDataInterface.saveContactWith(name: name!, phone: phone!, email: email, imageData: imageData) {[weak self] (error) in
             if let saveError = error {
                 print(saveError)
             }else{

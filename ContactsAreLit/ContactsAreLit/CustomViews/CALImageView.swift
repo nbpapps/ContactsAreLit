@@ -28,6 +28,7 @@ final class CALImageView: UIImageView {
     private func config() {
         layer.cornerRadius = Values.imageViewCornerRadius
         clipsToBounds = true
+        contentMode = .scaleAspectFill
         translatesAutoresizingMaskIntoConstraints = false
     }
 }

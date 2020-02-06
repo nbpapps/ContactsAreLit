@@ -61,6 +61,11 @@ final class ContactsViewController: UIViewController,UICollectionViewDelegate {
 
             }
             cell.contactName.text = contact.name
+            if let imageData = contact.image {
+                cell.contactImageView.image = UIImage(data: imageData)
+            }else{
+                cell.contactImageView.image = UIImage(named: Text.placeholderImageName)
+            }
             
             return cell
         })

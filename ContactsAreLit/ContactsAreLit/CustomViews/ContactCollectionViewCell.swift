@@ -33,10 +33,15 @@ class ContactCollectionViewCell: UICollectionViewCell {
         contentView.layer.cornerRadius = Values.cellRadius
         
         NSLayoutConstraint.activate([
-            contactImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Values.imageViewPadding),
-            contactImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Values.imageViewPadding),
-            contactImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant:-Values.imageViewPadding ),
+            contactImageView.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor, constant: Values.imageViewPadding),
             contactImageView.heightAnchor.constraint(equalToConstant: Values.imageViewHeight),
+            contactImageView.widthAnchor.constraint(equalTo: contactImageView.heightAnchor),
+            contactImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            
+//            contactImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Values.imageViewPadding),
+//            contactImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Values.imageViewPadding),
+//            contactImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant:-Values.imageViewPadding ),
+//            contactImageView.heightAnchor.constraint(equalToConstant: Values.imageViewHeight),
             
             contactName.topAnchor.constraint(equalTo: contactImageView.bottomAnchor, constant:Values.viewSpasing),
             contactName.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Values.labelPadding),

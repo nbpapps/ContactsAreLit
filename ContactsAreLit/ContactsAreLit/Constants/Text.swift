@@ -16,6 +16,7 @@ struct Text {
      //MARK:- errors
     static let noStoryboradImplementation = "Storyboard not implemented"
     static let incorrectCell = "Incorrect Cell"
+    static let optionNotSupported = "Option Not Supported"
     
     //MARK:- images
     static let placeholderImageName = "PlaceholderImage"
