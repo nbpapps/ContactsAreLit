@@ -15,6 +15,7 @@ struct Text {
     
      //MARK:- errors
     static let noStoryboradImplementation = "Storyboard not implemented"
+    static let incorrectCell = "Incorrect Cell"
     
     //MARK:- images
     static let placeholderImageName = "PlaceholderImage"
@@ -27,4 +28,7 @@ struct Text {
     static let enterContactName = "Contact name"
     static let enterContactPhone = "Contact phone number"
     static let enterContactEmail = "Contact email"
+    
+    //MARK: - ids
+    static let contactCellId = "contactCellId"
 }

@@ -18,7 +18,17 @@ final class AddContactViewController: UIViewController {
     var phoneTextField : CALTextField!
     var emailTextField : CALTextField!
     
+    let coreDataInterface : CoreDataInterface
+       
+    init(coreDataInterface : CoreDataInterface) {
+        self.coreDataInterface = coreDataInterface
+        super.init(nibName: nil, bundle: nil)
+    }
     
+    required init?(coder: NSCoder) {
+        fatalError(Text.noStoryboradImplementation)
+    }
+       
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -118,11 +128,28 @@ final class AddContactViewController: UIViewController {
     }
     
     @objc private func saveButtonTapped() {
-        print("saveButtonPressed")
+        saveContact()
     }
     
     @objc private func cancelButtonTapped() {
         print("cancelButtonPressed")
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func saveContact() {
+        let name = nameTextField.text
+        let phone = phoneTextField.text
+        let email = emailTextField.text
+        
+        coreDataInterface.saveContactWith(name: name!, phone: phone!, email: email, image: nil) {[weak self] (error) in
+            if let saveError = error {
+                print(saveError)
+            }else{
+                self?.dismiss(animated: true) {
+                    
+                }
+            }
+        }
     }
     
     

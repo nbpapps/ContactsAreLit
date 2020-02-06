@@ -13,7 +13,7 @@ import CoreData
 
 extension Contact {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Contact> {
+    @nonobjc public class func createFetchRequest() -> NSFetchRequest<Contact> {
         return NSFetchRequest<Contact>(entityName: "Contact")
     }
 

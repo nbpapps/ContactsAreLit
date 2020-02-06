@@ -10,6 +10,9 @@ import UIKit
 
 struct Values {
     
+    //MARK:- config
+    static let numberOfCollectionViewColums = 2
+    
     //MARK:- image view
     static let imageViewCornerRadius : CGFloat = 10
     static let imageViewPadding : CGFloat = 20
@@ -28,5 +31,19 @@ struct Values {
     
     //MARK: - spacing
     static let viewSpasing : CGFloat = 20
+    
+    //MARK:- collection view
+    static let collectionViewPadding : CGFloat = 12
+    static let collectionViewMinItemSpacing : CGFloat = 5
+    static let collectionViewAdditionalItemHeight : CGFloat = 30
+    
+    static let cellRadius : CGFloat = 10
+    
+    //MARK: - labels
+    static let minimumScaleFactor : CGFloat = 0.9
+    static let contactNameFontSize : CGFloat = 16
+    static let labelPadding : CGFloat = 10
+    static let labelHeight : CGFloat = 30
+
     
 }

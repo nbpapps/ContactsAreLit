@@ -30,8 +30,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     
     func createMainNavCont() -> UINavigationController {
-           let contactsViewController = ContactsViewController()
-           return UINavigationController(rootViewController: contactsViewController)
+        let persistentContainer = (UIApplication.shared.delegate as! AppDelegate).persistentContainer
+        let coreDataInterface = CoreDataInterface(persistentContainer: persistentContainer)
+        let contactsViewController = ContactsViewController(coreDataInterface: coreDataInterface)
+        return UINavigationController(rootViewController: contactsViewController)
        }
     
     func sceneDidDisconnect(_ scene: UIScene) {
