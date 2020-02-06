@@ -44,7 +44,7 @@ final class ContactsViewController: UIViewController {
     private func showAddContactViewController() {
         let addContactViewController = AddContactViewController()
         let navController = UINavigationController(rootViewController: addContactViewController)
-//        navigationController?.show(addContactViewController, sender: self)
+        navController.modalPresentationStyle = .fullScreen
         present(navController, animated: true) {
             
         }

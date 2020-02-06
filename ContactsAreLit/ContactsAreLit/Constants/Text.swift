@@ -18,8 +18,13 @@ struct Text {
     
     //MARK:- images
     static let placeholderImageName = "PlaceholderImage"
-    static let addPhoto = "person.badge.plus"
+    static let addPhoto = "plus.circle.fill" //person.badge.plus"
     
     //MARK:- colors
     static let mainAppColor = "MainAppColor"
+    
+    //MARK: - placeholders
+    static let enterContactName = "Contact name"
+    static let enterContactPhone = "Contact phone number"
+    static let enterContactEmail = "Contact email"
 }

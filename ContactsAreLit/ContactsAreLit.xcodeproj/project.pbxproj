@@ -20,6 +20,11 @@
 		E830F72123EB189B00F1E0E0 /* AddContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E830F72023EB189B00F1E0E0 /* AddContactViewController.swift */; };
 		E830F72423EB1CBD00F1E0E0 /* CALImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E830F72323EB1CBD00F1E0E0 /* CALImageView.swift */; };
 		E830F72623EB234E00F1E0E0 /* CALButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E830F72523EB234E00F1E0E0 /* CALButton.swift */; };
+		E86CC32F23EC011900534ECE /* CALTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86CC32E23EC011900534ECE /* CALTextField.swift */; };
+		E86CC33323EC0AD000534ECE /* Contact+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86CC33123EC0AD000534ECE /* Contact+CoreDataClass.swift */; };
+		E86CC33423EC0AD000534ECE /* Contact+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86CC33223EC0AD000534ECE /* Contact+CoreDataProperties.swift */; };
+		E86CC33623EC476100534ECE /* CoreDataInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86CC33523EC476100534ECE /* CoreDataInterface.swift */; };
+		E86CC33723EC48E600534ECE /* Contact+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86CC33223EC0AD000534ECE /* Contact+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +55,10 @@
 		E830F72023EB189B00F1E0E0 /* AddContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactViewController.swift; sourceTree = "<group>"; };
 		E830F72323EB1CBD00F1E0E0 /* CALImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALImageView.swift; sourceTree = "<group>"; };
 		E830F72523EB234E00F1E0E0 /* CALButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALButton.swift; sourceTree = "<group>"; };
+		E86CC32E23EC011900534ECE /* CALTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALTextField.swift; sourceTree = "<group>"; };
+		E86CC33123EC0AD000534ECE /* Contact+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Contact+CoreDataClass.swift"; sourceTree = "<group>"; };
+		E86CC33223EC0AD000534ECE /* Contact+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Contact+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E86CC33523EC476100534ECE /* CoreDataInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataInterface.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +100,7 @@
 		E830F6F123EAE46C00F1E0E0 /* ContactsAreLit */ = {
 			isa = PBXGroup;
 			children = (
+				E86CC33023EC095500534ECE /* DataBase */,
 				E830F72223EB1C6500F1E0E0 /* CustomViews */,
 				E830F71B23EB15AF00F1E0E0 /* Constants */,
 				E830F71823EB025400F1E0E0 /* Views */,
@@ -145,8 +155,19 @@
 			children = (
 				E830F72323EB1CBD00F1E0E0 /* CALImageView.swift */,
 				E830F72523EB234E00F1E0E0 /* CALButton.swift */,
+				E86CC32E23EC011900534ECE /* CALTextField.swift */,
 			);
 			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		E86CC33023EC095500534ECE /* DataBase */ = {
+			isa = PBXGroup;
+			children = (
+				E86CC33123EC0AD000534ECE /* Contact+CoreDataClass.swift */,
+				E86CC33223EC0AD000534ECE /* Contact+CoreDataProperties.swift */,
+				E86CC33523EC476100534ECE /* CoreDataInterface.swift */,
+			);
+			path = DataBase;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,13 +272,17 @@
 			files = (
 				E830F71F23EB161900F1E0E0 /* Values.swift in Sources */,
 				E830F6F723EAE46C00F1E0E0 /* ViewController.swift in Sources */,
+				E86CC33623EC476100534ECE /* CoreDataInterface.swift in Sources */,
 				E830F6F323EAE46C00F1E0E0 /* AppDelegate.swift in Sources */,
+				E86CC32F23EC011900534ECE /* CALTextField.swift in Sources */,
 				E830F6F523EAE46C00F1E0E0 /* SceneDelegate.swift in Sources */,
 				E830F6FD23EAE46C00F1E0E0 /* ContactsAreLit.xcdatamodeld in Sources */,
 				E830F72123EB189B00F1E0E0 /* AddContactViewController.swift in Sources */,
+				E86CC33423EC0AD000534ECE /* Contact+CoreDataProperties.swift in Sources */,
 				E830F72423EB1CBD00F1E0E0 /* CALImageView.swift in Sources */,
 				E830F71D23EB160E00F1E0E0 /* Text.swift in Sources */,
 				E830F72623EB234E00F1E0E0 /* CALButton.swift in Sources */,
+				E86CC33323EC0AD000534ECE /* Contact+CoreDataClass.swift in Sources */,
 				E830F71A23EB027100F1E0E0 /* ContactsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -266,6 +291,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E86CC33723EC48E600534ECE /* Contact+CoreDataProperties.swift in Sources */,
 				E830F70D23EAE47000F1E0E0 /* ContactsAreLitTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
