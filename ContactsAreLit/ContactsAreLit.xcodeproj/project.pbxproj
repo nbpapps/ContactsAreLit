@@ -34,6 +34,8 @@
 		E89887EF23ECA99A00D9507B /* MediaImport.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89887EE23ECA99A00D9507B /* MediaImport.swift */; };
 		E89887F123ECAF4800D9507B /* UIViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89887F023ECAF4800D9507B /* UIViewController+Utils.swift */; };
 		E89887F323ECC54000D9507B /* UIImage+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89887F223ECC54000D9507B /* UIImage+Utils.swift */; };
+		E89887F523ED568000D9507B /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89887F423ED568000D9507B /* ContactViewController.swift */; };
+		E8D16A4323ED6E1B00DE661D /* ShowContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D16A4223ED6E1B00DE661D /* ShowContactViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +79,8 @@
 		E89887EE23ECA99A00D9507B /* MediaImport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaImport.swift; sourceTree = "<group>"; };
 		E89887F023ECAF4800D9507B /* UIViewController+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Utils.swift"; sourceTree = "<group>"; };
 		E89887F223ECC54000D9507B /* UIImage+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Utils.swift"; sourceTree = "<group>"; };
+		E89887F423ED568000D9507B /* ContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
+		E8D16A4223ED6E1B00DE661D /* ShowContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowContactViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +162,8 @@
 			children = (
 				E830F71923EB027100F1E0E0 /* ContactsViewController.swift */,
 				E830F72023EB189B00F1E0E0 /* AddContactViewController.swift */,
+				E89887F423ED568000D9507B /* ContactViewController.swift */,
+				E8D16A4223ED6E1B00DE661D /* ShowContactViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -321,6 +327,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8D16A4323ED6E1B00DE661D /* ShowContactViewController.swift in Sources */,
 				E830F71F23EB161900F1E0E0 /* Values.swift in Sources */,
 				E89887E523EC59C700D9507B /* ContactCollectionViewCell.swift in Sources */,
 				E89887EA23EC67D100D9507B /* Contact+Utils.swift in Sources */,
@@ -338,6 +345,7 @@
 				E89887E723EC5A3900D9507B /* CALLabel.swift in Sources */,
 				E830F72423EB1CBD00F1E0E0 /* CALImageView.swift in Sources */,
 				E89887EF23ECA99A00D9507B /* MediaImport.swift in Sources */,
+				E89887F523ED568000D9507B /* ContactViewController.swift in Sources */,
 				E830F71D23EB160E00F1E0E0 /* Text.swift in Sources */,
 				E830F72623EB234E00F1E0E0 /* CALButton.swift in Sources */,
 				E89887E323EC58A600D9507B /* UIConfig.swift in Sources */,

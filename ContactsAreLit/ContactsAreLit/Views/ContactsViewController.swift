@@ -91,7 +91,7 @@ final class ContactsViewController: UIViewController,UICollectionViewDelegate {
     }
     
     private func showAddContactViewController() {
-        let addContactViewController = AddContactViewController(coreDataInterface: coreDataInterface)
+        let addContactViewController = AddContactViewController(coreDataInterface: coreDataInterface, isEditingContact: true)
         let navController = UINavigationController(rootViewController: addContactViewController)
         navController.modalPresentationStyle = .fullScreen
         present(navController, animated: true) {
