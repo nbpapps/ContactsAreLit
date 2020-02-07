@@ -91,7 +91,7 @@ final class ContactsViewController: UIViewController,UICollectionViewDelegate {
     }
     
     private func showAddContactViewController() {
-        let addContactViewController = AddContactViewController(coreDataInterface: coreDataInterface)
+        let addContactViewController = AddContactViewController(coreDataInterface: coreDataInterface, isEditingContact: true)
         let navController = UINavigationController(rootViewController: addContactViewController)
         navController.modalPresentationStyle = .fullScreen
         present(navController, animated: true) {
@@ -116,6 +116,11 @@ final class ContactsViewController: UIViewController,UICollectionViewDelegate {
     //MARK: - collection view delegate
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        if let contact = diffableDataSource.itemIdentifier(for: indexPath) {
+            let showContactViewController = ShowContactViewController(coreDataInterface: coreDataInterface, isEditingContact: false,contact: contact)
+            navigationController?.pushViewController(showContactViewController, animated: true)
+        }
         
     }
 

@@ -8,39 +8,39 @@
 
 import UIKit
 
-final class AddContactViewController: UIViewController {
+final class AddContactViewController: ContactViewController {
 
-    var contactImageView : CALImageView!
-    var selectPhotoButton : CALButton!
-    var plusImageView : CALImageView!
-    
-    var nameTextField : CALTextField!
-    var phoneTextField : CALTextField!
-    var emailTextField : CALTextField!
-    
-    let coreDataInterface : CoreDataInterface
+//    var contactImageView : CALImageView!
+//    var selectPhotoButton : CALButton!
+//    var plusImageView : CALImageView!
+//
+//    var nameTextField : CALTextField!
+//    var phoneTextField : CALTextField!
+//    var emailTextField : CALTextField!
+//
+//    let coreDataInterface : CoreDataInterface
        
-    init(coreDataInterface : CoreDataInterface) {
-        self.coreDataInterface = coreDataInterface
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError(Text.noStoryboradImplementation)
-    }
+//    init(coreDataInterface : CoreDataInterface) {
+//        self.coreDataInterface = coreDataInterface
+//        super.init(nibName: nil, bundle: nil)
+//    }
+//
+//    required init?(coder: NSCoder) {
+//        fatalError(Text.noStoryboradImplementation)
+//    }
        
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
-        configueContactImageView()
-        configurePlusImageView()
-        configureSelectPhotoButton()
-        configureNameTextField()
-        configureEmailTextField()
-        configurePhoneTextField()
+//        configueContactImageView()
+//        configurePlusImageView()
+//        configureSelectPhotoButton()
+//        configureNameTextField()
+//        configureEmailTextField()
+//        configurePhoneTextField()
         configueNavButtons()
-        layoutView()
+//        layoutView()
     }
     
     //MARK: - configure
@@ -49,36 +49,43 @@ final class AddContactViewController: UIViewController {
         view.backgroundColor = .systemBackground
     }
     
-    private func configueContactImageView() {
+    override func configueContactImageView() {
         contactImageView = CALImageView(image: UIImage(named: Text.placeholderImageName))
-        view.addSubview(contactImageView)
+        super.configueContactImageView()
+//        view.addSubview(contactImageView)
     }
+//
+//    private func configurePlusImageView() {
+//        plusImageView = CALImageView(image:  UIImage(systemName: Text.addPhoto)!)
+//        view.addSubview(plusImageView)
+////        view.bringSubviewToFront(plusImageView)
+//    }
     
-    private func configurePlusImageView() {
-        plusImageView = CALImageView(image:  UIImage(systemName: Text.addPhoto)!)
-        view.addSubview(plusImageView)
-//        view.bringSubviewToFront(plusImageView)
-    }
+//    private func configureSelectPhotoButton() {
+//        selectPhotoButton = CALButton(backgroundColor: .clear, title: "")
+//        selectPhotoButton.addTarget(self, action: #selector(selectContactImageButtonTapped), for: .touchUpInside)
+//        view.addSubview(selectPhotoButton)
+//    }
     
-    private func configureSelectPhotoButton() {
-        selectPhotoButton = CALButton(backgroundColor: .clear, title: "")
-        selectPhotoButton.addTarget(self, action: #selector(selectContactImageButtonTapped), for: .touchUpInside)
-        view.addSubview(selectPhotoButton)
-    }
-    
-    private func configureNameTextField() {
+    override func configureNameTextField() {
         nameTextField = CALTextField(placeholderText:Text.enterContactName, keyboardType: .default)
-        view.addSubview(nameTextField)
+        super.configureNameTextField()
+
+//        view.addSubview(nameTextField)
     }
     
-    private func configurePhoneTextField() {
+    override func configurePhoneTextField() {
         phoneTextField = CALTextField(placeholderText:Text.enterContactPhone, keyboardType: .phonePad)
-        view.addSubview(phoneTextField)
+        super.configurePhoneTextField()
+
+//        view.addSubview(phoneTextField)
     }
     
-    private func configureEmailTextField() {
+    override func configureEmailTextField() {
         emailTextField = CALTextField(placeholderText:Text.enterContactEmail, keyboardType: .emailAddress)
-        view.addSubview(emailTextField)
+        super.configureEmailTextField()
+
+//        view.addSubview(emailTextField)
     }
     
     private func configueNavButtons() {
@@ -91,6 +98,7 @@ final class AddContactViewController: UIViewController {
     
     
     //MARK:- layout
+    /*
     private func layoutView() {
         NSLayoutConstraint.activate([
             contactImageView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: Values.imageViewPadding),
@@ -122,23 +130,23 @@ final class AddContactViewController: UIViewController {
             emailTextField.heightAnchor.constraint(equalToConstant: Values.textFieldHeight)
         ])
     }
-    
+    */
     
     //MARK:-actions
-    @objc private func selectContactImageButtonTapped() {
-        let mediaPermissions = MediaPermissions()
-        mediaPermissions.checkPhotoLibraryPermission {[weak self] (photoPermition) in
-            switch photoPermition {
-            case .authorized:
-                DispatchQueue.main.async {
-                    self?.showPhotoLibrary()
-                }
-            case .unauthorized:
-                print("no permission to select photos")
-            }
-            
-        }
-    }
+//    @objc private func selectContactImageButtonTapped() {
+//        let mediaPermissions = MediaPermissions()
+//        mediaPermissions.checkPhotoLibraryPermission {[weak self] (photoPermition) in
+//            switch photoPermition {
+//            case .authorized:
+//                DispatchQueue.main.async {
+//                    self?.showPhotoLibrary()
+//                }
+//            case .unauthorized:
+//                print("no permission to select photos")
+//            }
+//
+//        }
+//    }
     
     @objc private func saveButtonTapped() {
         saveContact()
@@ -148,17 +156,17 @@ final class AddContactViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    private func showPhotoLibrary() {
-        let mediaImport = MediaImport()
-        add(mediaImport)
-        mediaImport.openPhotoLibrary()
-        mediaImport.onImageSelect = { [weak self] image in
-            mediaImport.remove()
-            DispatchQueue.main.async {
-                self?.contactImageView.image = image
-            }
-        }
-    }
+//    private func showPhotoLibrary() {
+//        let mediaImport = MediaImport()
+//        add(mediaImport)
+//        mediaImport.openPhotoLibrary()
+//        mediaImport.onImageSelect = { [weak self] image in
+//            mediaImport.remove()
+//            DispatchQueue.main.async {
+//                self?.contactImageView.image = image
+//            }
+//        }
+//    }
     
     private func saveContact() {
         let name = nameTextField.text

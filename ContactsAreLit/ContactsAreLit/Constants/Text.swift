@@ -12,6 +12,7 @@ struct Text {
     //MARK: - titles
     static let contacts = "Contacts"
     static let addContact = "Add a new contact"
+    static let contactInfo = "Contact info"
     
      //MARK:- errors
     static let noStoryboradImplementation = "Storyboard not implemented"
