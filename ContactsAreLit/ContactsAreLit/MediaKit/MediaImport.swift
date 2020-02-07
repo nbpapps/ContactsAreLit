@@ -11,7 +11,7 @@ import UIKit
 class MediaImport : UIViewController, UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
     //we use this closure to tell the calling VC that an image has been selected
-    var onImageSelect : (UIImage) -> () = {_ in }
+    var onImageSelect : (UIImage?) -> () = {_ in }
     
     func openPhotoLibrary() {
         let myPickerController = UIImagePickerController()
@@ -29,5 +29,10 @@ class MediaImport : UIViewController, UIImagePickerControllerDelegate,UINavigati
         }else{
             return
         }
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+        onImageSelect(nil)
     }
 }

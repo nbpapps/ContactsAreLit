@@ -13,11 +13,12 @@ final class ShowContactViewController: ContactViewController {
     var makeCallButton : CALButton!
     
     var contact : Contact
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
         configureMakeCallButton()
+        configueNavButtonsForDisplayInfo()
         layoutShowContactView()
     }
     
@@ -77,7 +78,58 @@ final class ShowContactViewController: ContactViewController {
         super.configureEmailTextField()
     }
     
+    private func configueNavButtonsForDisplayInfo() {
+        let editButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editButtonTapped))
+        navigationItem.rightBarButtonItems = [editButton]
+    }
+    
+    private func configureNavButtonsForEditing() {
+        let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonTapped))
+        let cancelButton = UIBarButtonItem(barButtonSystemItem:.cancel, target: self, action: #selector(cancelButtonTapped))
+        navigationItem.rightBarButtonItems = [saveButton,cancelButton]
+    }
+    
+    private func populateContactInfo(contactInfo : Contact) {
+        nameTextField.text = contactInfo.name
+        phoneTextField.text = contactInfo.phone
+        emailTextField.text = contactInfo.email
+        
+        if let imageData = contactInfo.image {
+            contactImageView.image = UIImage(data: imageData)
+        }else{
+            contactImageView.image = UIImage(named: Text.placeholderImageName)
+        }
+    }
+    
+    //MARK: - change edit mode
+    private func changeEditMode() {
+        
+        if isEditingContact {
+            //we were in editing mode, now need to show display mode
+            configureScreenForDisplayMode()
+        }else{
+            //we are in dislpay mode, need to change to edit mode
+            configureScreenForEditMode()
+        }
+        isEditingContact.toggle()
+    }
+    
+
     //MARK: - actions
+    @objc private func editButtonTapped() {
+        changeEditMode()
+    }
+    
+    @objc private func saveButtonTapped() {
+        updateContactInfo()
+        changeEditMode()
+    }
+    
+    @objc private func cancelButtonTapped() {
+        changeEditMode()
+    }
+    
+    
     @objc private func makeCallButtonTapped() {
         makeCall()
     }
@@ -88,4 +140,47 @@ final class ShowContactViewController: ContactViewController {
         }
     }
     
+    private func updateContactInfo() {
+        contact.name = nameTextField.text
+        contact.phone = phoneTextField.text
+        contact.email = emailTextField.text
+        contact.image = contactImageView.image?.imageData
+        
+        coreDataInterface.update { [weak self](error) in
+            if let saveError = error {
+                print(saveError.localizedDescription)
+            }else if let updatedContact = self?.contact{
+                self?.populateContactInfo(contactInfo: updatedContact)
+            }else{
+                print("no contact error")
+            }
+        }
+    }
+}
+
+extension ShowContactViewController {
+    private func configureScreenForEditMode() {
+        configureNavButtonsForEditing()
+        
+        nameTextField.updateForEditing(withPlaceHolderText: Text.enterContactName)
+        phoneTextField.updateForEditing(withPlaceHolderText: Text.enterContactPhone)
+        emailTextField.updateForEditing(withPlaceHolderText: Text.enterContactEmail)
+        
+        makeCallButton.isHidden = true
+        
+    }
+    
+    private func configureScreenForDisplayMode() {
+        view.endEditing(true)
+        configueNavButtonsForDisplayInfo()
+        
+        nameTextField.updateForShowingText()
+        phoneTextField.updateForShowingText(with: UIColor(named: Text.mainAppColor)!)
+        emailTextField.updateForShowingText()
+        
+        makeCallButton.isHidden = false
+        
+        populateContactInfo(contactInfo: contact)
+    }
+       
 }

@@ -29,6 +29,17 @@ struct CoreDataInterface {
         self.persistentContainer = persistentContainer
     }
     
+    func update(with completion: @escaping saveCompletion) {
+        persistentContainer.viewContext.perform {
+            do {
+                try self.persistentContainer.viewContext.save()
+                completion(nil)
+            }catch{
+                completion(.saveError(errorMessage: "error saving contact \(error.localizedDescription)"))
+            }
+        }
+    }
+    
     func saveContactWith(name : String,phone : String, email : String?,imageData : Data?,and completion: @escaping saveCompletion) {
         persistentContainer.viewContext.perform {
             let contact = Contact(context: self.persistentContainer.viewContext)

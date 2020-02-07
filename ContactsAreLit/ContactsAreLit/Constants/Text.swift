@@ -21,7 +21,7 @@ struct Text {
     
     //MARK:- images
     static let placeholderImageName = "PlaceholderImage"
-    static let addPhoto = "plus.circle.fill" //person.badge.plus"
+    static let addPhoto = "arrow.swap" //plus.circle.fill" //person.badge.plus"
     
     //MARK:- colors
     static let mainAppColor = "MainAppColor"

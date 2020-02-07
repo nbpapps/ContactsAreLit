@@ -8,18 +8,21 @@
 
 import Foundation
 
-//extension Contact {
-//    struct Diffable : Hashable {
-//        let name : String
-//        let phone : String
-//        let email : String
-//        
-//        init(contact : Contact) {
-//            self.name = contact.name!
-//            self.phone = contact.phone!
-//            self.email = contact.email!
-//            
-//            
-//        }
-//    }
-//}
+extension Contact {
+    struct Diffable : Hashable {
+        let name : String
+        let phone : String
+        let email : String
+        let image : Data
+//        let id : UUID
+        
+        init(contact : Contact) {
+            self.name = contact.name!
+            self.phone = contact.phone!
+            self.email = contact.email!
+            self.image = contact.image!
+//            self.id
+        }
+        
+    }
+}

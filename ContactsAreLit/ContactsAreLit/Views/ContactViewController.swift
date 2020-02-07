@@ -9,7 +9,7 @@
 import UIKit
 
 class ContactViewController: UIViewController {
-    
+   
     var contactImageView : CALImageView!
     var selectPhotoButton : CALButton!
     var plusImageView : CALImageView!
@@ -19,7 +19,6 @@ class ContactViewController: UIViewController {
     var emailTextField : CALTextField!
     
     let coreDataInterface : CoreDataInterface
-    
     var isEditingContact : Bool
     
     init(coreDataInterface : CoreDataInterface,isEditingContact : Bool) {
@@ -35,32 +34,24 @@ class ContactViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //            configureView()
         configueContactImageView()
         configurePlusImageView()
         configureSelectPhotoButton()
         configureNameTextField()
         configureEmailTextField()
         configurePhoneTextField()
-        //            configueNavButtons()
         layoutView()
     }
+
     
     //MARK: - configure
-    //        private func configureView() {
-    //            title = Text.addContact
-    //            view.backgroundColor = .systemBackground
-    //        }
-    
     func configueContactImageView() {
-//        contactImageView = CALImageView(image: UIImage(named: Text.placeholderImageName))
         view.addSubview(contactImageView)
     }
     
     private func configurePlusImageView() {
         plusImageView = CALImageView(image:  UIImage(systemName: Text.addPhoto)!)
         view.addSubview(plusImageView)
-        //        view.bringSubviewToFront(plusImageView)
     }
     
     private func configureSelectPhotoButton() {
@@ -70,27 +61,16 @@ class ContactViewController: UIViewController {
     }
     
     func configureNameTextField() {
-        //            nameTextField = CALTextField(placeholderText:Text.enterContactName, keyboardType: .default)
         view.addSubview(nameTextField)
     }
     
     func configurePhoneTextField() {
-        //            phoneTextField = CALTextField(placeholderText:Text.enterContactPhone, keyboardType: .phonePad)
         view.addSubview(phoneTextField)
     }
     
     func configureEmailTextField() {
-        //            emailTextField = CALTextField(placeholderText:Text.enterContactEmail, keyboardType: .emailAddress)
         view.addSubview(emailTextField)
     }
-    
-    //        private func configueNavButtons() {
-    //            let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonTapped))
-    //            navigationItem.rightBarButtonItem = saveButton
-    //
-    //            let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonTapped))
-    //            navigationItem.leftBarButtonItem = cancelButton
-    //        }
     
     
     //MARK:- layout
@@ -101,7 +81,8 @@ class ContactViewController: UIViewController {
             contactImageView.widthAnchor.constraint(equalTo: contactImageView.heightAnchor),
             contactImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
-            plusImageView.trailingAnchor.constraint(equalTo: contactImageView.leadingAnchor, constant: -20),
+            plusImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+//            plusImageView.trailingAnchor.constraint(equalTo: contactImageView.leadingAnchor, constant: -20),
             plusImageView.bottomAnchor.constraint(equalTo: contactImageView.bottomAnchor, constant: -Values.imageInImagePadding),
             
             selectPhotoButton.topAnchor.constraint(equalTo: contactImageView.topAnchor),
@@ -126,8 +107,8 @@ class ContactViewController: UIViewController {
         ])
     }
     
-    
-    //MARK:-actions
+
+    //MARK:- actions
     @objc private func selectContactImageButtonTapped() {
         guard isEditingContact == true else {
             return
@@ -146,40 +127,18 @@ class ContactViewController: UIViewController {
         }
     }
     
-    //        @objc private func saveButtonTapped() {
-    //            saveContact()
-    //        }
-    //
-    //        @objc private func cancelButtonTapped() {
-    //            dismiss(animated: true, completion: nil)
-    //        }
-    
+    //MARK: - show media
     private func showPhotoLibrary() {
         let mediaImport = MediaImport()
         add(mediaImport)
         mediaImport.openPhotoLibrary()
         mediaImport.onImageSelect = { [weak self] image in
             mediaImport.remove()
-            DispatchQueue.main.async {
-                self?.contactImageView.image = image
+            if let selectedImage = image {
+                DispatchQueue.main.async {
+                    self?.contactImageView.image = selectedImage
+                }
             }
         }
     }
-    
-    //        private func saveContact() {
-    //            let name = nameTextField.text
-    //            let phone = phoneTextField.text
-    //            let email = emailTextField.text
-    //            let imageData = contactImageView.image?.imageData
-    //
-    //            coreDataInterface.saveContactWith(name: name!, phone: phone!, email: email, imageData: imageData) {[weak self] (error) in
-    //                if let saveError = error {
-    //                    print(saveError)
-    //                }else{
-    //                    self?.dismiss(animated: true) {
-    //
-    //                    }
-    //                }
-    //            }
-    //        }
 }

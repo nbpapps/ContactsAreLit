@@ -33,22 +33,31 @@ final class CALTextField: UITextField {
         self.keyboardType = keyboardType
         self.textColor = textColor
         configure()
-        configureForShowingText()
+        configureForShowingText(with: textColor)
     }
     
     private func configureForEnteringText() {
+        layer.borderColor = UIColor(named: Text.mainAppColor)?.cgColor
         layer.cornerRadius = Values.textFieldCornerRadius
         layer.borderWidth = Values.textFieldBorderWidth
-        layer.borderColor = UIColor(named: Text.mainAppColor)?.cgColor
-        backgroundColor = .tertiarySystemBackground
+        
+        isUserInteractionEnabled = true
+
+        backgroundColor = .systemGroupedBackground
         textColor = .label
 
     }
     
-    private func configureForShowingText() {
+    private func configureForShowingText(with color : UIColor = .label) {
         layer.borderColor = UIColor.clear.cgColor
+        
         isUserInteractionEnabled = false
+        
         backgroundColor = .clear
+        textColor = color
+        
+        placeholder = ""
+
     }
     
     private func configure() {
@@ -59,4 +68,15 @@ final class CALTextField: UITextField {
         minimumFontSize = Values.minimumFontSize
         autocorrectionType = .no
     }
+    
+    func updateForEditing(withPlaceHolderText placeHolderText : String) {
+        configureForEnteringText()
+        self.placeholder = placeHolderText
+    }
+    
+    func updateForShowingText(with color : UIColor = .label) {
+        configureForShowingText(with: color)
+    }
+    
+    
 }
