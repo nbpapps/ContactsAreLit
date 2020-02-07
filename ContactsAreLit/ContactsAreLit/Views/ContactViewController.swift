@@ -52,8 +52,8 @@ class ContactViewController: UIViewController {
     //            view.backgroundColor = .systemBackground
     //        }
     
-    private func configueContactImageView() {
-        contactImageView = CALImageView(image: UIImage(named: Text.placeholderImageName))
+    func configueContactImageView() {
+//        contactImageView = CALImageView(image: UIImage(named: Text.placeholderImageName))
         view.addSubview(contactImageView)
     }
     
@@ -129,6 +129,9 @@ class ContactViewController: UIViewController {
     
     //MARK:-actions
     @objc private func selectContactImageButtonTapped() {
+        guard isEditingContact == true else {
+            return
+        }
         let mediaPermissions = MediaPermissions()
         mediaPermissions.checkPhotoLibraryPermission {[weak self] (photoPermition) in
             switch photoPermition {

@@ -49,10 +49,11 @@ final class AddContactViewController: ContactViewController {
         view.backgroundColor = .systemBackground
     }
     
-//    private func configueContactImageView() {
-//        contactImageView = CALImageView(image: UIImage(named: Text.placeholderImageName))
+    override func configueContactImageView() {
+        contactImageView = CALImageView(image: UIImage(named: Text.placeholderImageName))
+        super.configueContactImageView()
 //        view.addSubview(contactImageView)
-//    }
+    }
 //
 //    private func configurePlusImageView() {
 //        plusImageView = CALImageView(image:  UIImage(systemName: Text.addPhoto)!)
@@ -155,17 +156,17 @@ final class AddContactViewController: ContactViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    private func showPhotoLibrary() {
-        let mediaImport = MediaImport()
-        add(mediaImport)
-        mediaImport.openPhotoLibrary()
-        mediaImport.onImageSelect = { [weak self] image in
-            mediaImport.remove()
-            DispatchQueue.main.async {
-                self?.contactImageView.image = image
-            }
-        }
-    }
+//    private func showPhotoLibrary() {
+//        let mediaImport = MediaImport()
+//        add(mediaImport)
+//        mediaImport.openPhotoLibrary()
+//        mediaImport.onImageSelect = { [weak self] image in
+//            mediaImport.remove()
+//            DispatchQueue.main.async {
+//                self?.contactImageView.image = image
+//            }
+//        }
+//    }
     
     private func saveContact() {
         let name = nameTextField.text

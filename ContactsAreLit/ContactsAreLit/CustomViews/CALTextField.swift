@@ -19,28 +19,44 @@ final class CALTextField: UITextField {
         fatalError(Text.noStoryboradImplementation)
     }
     
-    init(placeholderText : String,keyboardType: UIKeyboardType){
+    init(placeholderText : String,keyboardType: UIKeyboardType = .default){
         super.init(frame: .zero)
         self.placeholder = placeholderText
         self.keyboardType = keyboardType
         configure()
+        configureForEnteringText()
+    }
+    
+    init(text : String?,keyboardType: UIKeyboardType = .default,textColor : UIColor = .label) {
+        super.init(frame: .zero)
+        self.text = text
+        self.keyboardType = keyboardType
+        self.textColor = textColor
+        configure()
+        configureForShowingText()
+    }
+    
+    private func configureForEnteringText() {
+        layer.cornerRadius = Values.textFieldCornerRadius
+        layer.borderWidth = Values.textFieldBorderWidth
+        layer.borderColor = UIColor(named: Text.mainAppColor)?.cgColor
+        backgroundColor = .tertiarySystemBackground
+        textColor = .label
 
+    }
+    
+    private func configureForShowingText() {
+        layer.borderColor = UIColor.clear.cgColor
+        isUserInteractionEnabled = false
+        backgroundColor = .clear
     }
     
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false
-        layer.cornerRadius = Values.textFieldCornerRadius
-        layer.borderWidth = Values.textFieldBorderWidth
-        layer.borderColor = UIColor(named: Text.mainAppColor)?.cgColor
-        
-        textColor = .label
-//        tintColor = .label
         textAlignment = .center
         font = UIFont.preferredFont(forTextStyle: .title2)
         adjustsFontSizeToFitWidth = true
         minimumFontSize = Values.minimumFontSize
-        
-        backgroundColor = .tertiarySystemBackground
         autocorrectionType = .no
     }
 }

@@ -117,6 +117,11 @@ final class ContactsViewController: UIViewController,UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+        if let contact = diffableDataSource.itemIdentifier(for: indexPath) {
+            let showContactViewController = ShowContactViewController(coreDataInterface: coreDataInterface, isEditingContact: false,contact: contact)
+            navigationController?.pushViewController(showContactViewController, animated: true)
+        }
+        
     }
 
 }
