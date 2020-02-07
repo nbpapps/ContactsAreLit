@@ -101,10 +101,22 @@ final class ContactsViewController: UIViewController,UICollectionViewDelegate {
     
     //MARK: - fetch
     func fetch() {
-        guard let contacts = coreDataInterface.fetch() else{
-            return
+        coreDataInterface.fetchContact { (result) in
+            switch result {
+            case .success(let contacts) :
+                DispatchQueue.main.async {
+                    self.updateSnapshotWith(contacts: contacts)
+                }
+            case .failure(let error):
+                print("fetch error \(error.localizedDescription)")
+            }
         }
-        updateSnapshotWith(contacts: contacts)
+    }
+    
+    //MARK: - collection view delegate
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
     }
 
 }

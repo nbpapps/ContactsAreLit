@@ -14,6 +14,7 @@ Add Contact Screen
 
 
 Known issues and bugs
+* error messages should be displayied to the user. Currently they are only printed
 
 
 Notes:

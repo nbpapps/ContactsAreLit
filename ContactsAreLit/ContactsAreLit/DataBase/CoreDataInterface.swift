@@ -9,10 +9,15 @@
 import Foundation
 import CoreData
 
-typealias saveCompletion = (CoreDataError?) -> Void
+typealias saveCompletion = (CoreDataSaveError?) -> Void
+typealias fetchCompletion = (Result<[Contact],CoreDataFetchError>) -> Void
 
-enum CoreDataError :Error {
+enum CoreDataSaveError :Error {
     case saveError(errorMessage : String)
+}
+
+enum CoreDataFetchError : Error {
+    case fetchError(errorMessage : String)
 }
 
 
@@ -40,17 +45,21 @@ struct CoreDataInterface {
         }
     }
     
-    func fetch() -> [Contact]?{
+    func fetchContact(with completion : @escaping fetchCompletion) {
         let request = Contact.createFetchRequest()
         let sort = NSSortDescriptor(key: "name", ascending: true)
         request.sortDescriptors = [sort]
-        do {
-            let contacts = try persistentContainer.viewContext.fetch(request)
-            return contacts
-        }catch{
-            return nil
-        }
         
+        //we use a DispatchQueue to preform the fetch in the background
+        let queue = DispatchQueue(label: "test",qos:.userInteractive)
+        queue.async {
+            do {
+                let contacts = try self.persistentContainer.viewContext.fetch(request)
+                completion(.success(contacts))
+            }catch{
+                completion(.failure(.fetchError(errorMessage: "error fetching contacts \(error.localizedDescription)")))
+            }
+        }
     }
     
 }
