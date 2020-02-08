@@ -9,17 +9,13 @@
 import Foundation
 import CoreData
 
-typealias saveCompletion = (CoreDataSaveError?) -> Void
-typealias fetchCompletion = (Result<[Contact],CoreDataFetchError>) -> Void
+typealias saveCompletion = (CoreDataError?) -> Void
+typealias fetchCompletion = (Result<[Contact],CoreDataError>) -> Void
+typealias deleteCompletion = (CoreDataError?) -> Void
 
-enum CoreDataSaveError :Error {
-    case saveError(errorMessage : String)
+enum CoreDataError :Error {
+    case coreDataError(errorMessage : String)
 }
-
-enum CoreDataFetchError : Error {
-    case fetchError(errorMessage : String)
-}
-
 
 struct CoreDataInterface {
     
@@ -29,13 +25,23 @@ struct CoreDataInterface {
         self.persistentContainer = persistentContainer
     }
     
+    func delete(contact : Contact, withCompletion completion : @escaping deleteCompletion) {
+        persistentContainer.viewContext.delete(contact)
+        do {
+            try self.persistentContainer.viewContext.save()
+            completion(nil)
+        }catch{
+            completion(.coreDataError(errorMessage: "error saving contact \(error.localizedDescription)"))
+        }
+    }
+    
     func update(with completion: @escaping saveCompletion) {
         persistentContainer.viewContext.perform {
             do {
                 try self.persistentContainer.viewContext.save()
                 completion(nil)
             }catch{
-                completion(.saveError(errorMessage: "error saving contact \(error.localizedDescription)"))
+                completion(.coreDataError(errorMessage: "error saving contact \(error.localizedDescription)"))
             }
         }
     }
@@ -47,11 +53,13 @@ struct CoreDataInterface {
             contact.phone = phone
             contact.email = email
             contact.image = imageData
+            contact.id = UUID()
+            
             do {
                 try self.persistentContainer.viewContext.save()
                 completion(nil)
             }catch{
-                completion(.saveError(errorMessage: "error saving contact \(error.localizedDescription)"))
+                completion(.coreDataError(errorMessage: "error saving contact \(error.localizedDescription)"))
             }
         }
     }
@@ -62,13 +70,13 @@ struct CoreDataInterface {
         request.sortDescriptors = [sort]
         
         //we use a DispatchQueue to preform the fetch in the background
-        let queue = DispatchQueue(label: "test",qos:.userInteractive)
+        let queue = DispatchQueue(label: Text.fetchContactQueueTag,qos:.userInteractive)
         queue.async {
             do {
                 let contacts = try self.persistentContainer.viewContext.fetch(request)
                 completion(.success(contacts))
             }catch{
-                completion(.failure(.fetchError(errorMessage: "error fetching contacts \(error.localizedDescription)")))
+                completion(.failure(.coreDataError(errorMessage: "error fetching contacts \(error.localizedDescription)")))
             }
         }
     }

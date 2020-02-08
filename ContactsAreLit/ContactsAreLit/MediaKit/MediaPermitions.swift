@@ -11,8 +11,6 @@ import Photos
 
 typealias photoLibraryPermissionsCompletion = (PhotoPermissions) -> Void
 
-//BRANCH
-
 enum PhotoPermissions {
     //in a live app, we would support all the status options
     case authorized

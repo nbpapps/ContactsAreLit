@@ -8,18 +8,36 @@
 
 import UIKit
 
+enum ContactStatusChange {
+    case update
+    case delete
+    case none
+  }
+
+
 final class ShowContactViewController: ContactViewController {
     
     var makeCallButton : CALButton!
+    var deleteButton : CALButton!
     
     var contact : Contact
-        
+    
+    //we use this closure to tell the main VC that a contact has been updated
+    var onContactStatusChange : (ContactStatusChange,Contact) -> () = {_,_  in }
+    var contactStatusChange : ContactStatusChange = .none
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
         configureMakeCallButton()
+        configureDeleteButton()
         configueNavButtonsForDisplayInfo()
         layoutShowContactView()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        onContactStatusChange(contactStatusChange,contact)
     }
     
     init(coreDataInterface : CoreDataInterface,isEditingContact : Bool,contact : Contact) {
@@ -44,12 +62,22 @@ final class ShowContactViewController: ContactViewController {
         view.addSubview(makeCallButton)
     }
     
+    private func configureDeleteButton() {
+        deleteButton = CALButton(backgroundColor: .red, title: Text.deleteButton)
+        deleteButton.addTarget(self, action: #selector(deleteContactButtonTapped), for: .touchUpInside)
+        view.addSubview(deleteButton)
+    }
+    
     private func layoutShowContactView() {
         NSLayoutConstraint.activate([
             makeCallButton.topAnchor.constraint(equalTo: phoneTextField.topAnchor),
             makeCallButton.leadingAnchor.constraint(equalTo: phoneTextField.leadingAnchor),
             makeCallButton.trailingAnchor.constraint(equalTo: phoneTextField.trailingAnchor),
-            makeCallButton.bottomAnchor.constraint(equalTo: phoneTextField.bottomAnchor)
+            makeCallButton.bottomAnchor.constraint(equalTo: phoneTextField.bottomAnchor),
+            
+            deleteButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -Values.bottomSpacing),
+            deleteButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Values.buttonPadding),
+            deleteButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Values.buttonPadding)
         ])
     }
     
@@ -129,9 +157,12 @@ final class ShowContactViewController: ContactViewController {
         changeEditMode()
     }
     
-    
     @objc private func makeCallButtonTapped() {
         makeCall()
+    }
+    
+    @objc private func deleteContactButtonTapped() {
+        showDeleteAlert()
     }
     
     private func makeCall() {
@@ -140,7 +171,35 @@ final class ShowContactViewController: ContactViewController {
         }
     }
     
+    //MARK: - show delete alert
+    private func showDeleteAlert() {
+        let alert = UIAlertController(title: "Alert", message: "Message", preferredStyle: .alert)
+        let action = UIAlertAction(title: Text.deleteAlertTitle, style: .destructive) { [weak self](action) in
+            self?.deleteContact()
+        }
+        let cancel = UIAlertAction(title: Text.cancelAction, style: .cancel, handler: nil)
+        
+        alert.addAction(action)
+        alert.addAction(cancel)
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    //MARK: contact changes
+    
+    private func deleteContact() {
+        coreDataInterface.delete(contact: contact) {[weak self] (error) in
+            if let deleteError = error {
+                print(deleteError.localizedDescription)
+            }else{
+                self?.contactStatusChange = .delete
+                self?.navigationController?.popViewController(animated: true)
+            }
+        }
+    }
+    
     private func updateContactInfo() {
+        contactStatusChange = .update
         contact.name = nameTextField.text
         contact.phone = phoneTextField.text
         contact.email = emailTextField.text
@@ -167,7 +226,7 @@ extension ShowContactViewController {
         emailTextField.updateForEditing(withPlaceHolderText: Text.enterContactEmail)
         
         makeCallButton.isHidden = true
-        
+        deleteButton.isHidden = true
     }
     
     private func configureScreenForDisplayMode() {
@@ -179,7 +238,8 @@ extension ShowContactViewController {
         emailTextField.updateForShowingText()
         
         makeCallButton.isHidden = false
-        
+        deleteButton.isHidden = false
+
         populateContactInfo(contactInfo: contact)
     }
        

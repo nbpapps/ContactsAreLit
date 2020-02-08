@@ -84,6 +84,22 @@ final class ContactsViewController: UIViewController,UICollectionViewDelegate {
         diffableDataSource.apply(snapshot)
     }
     
+    private func updateContact(contact : Contact,for status : ContactStatusChange) {
+        switch status {
+        case .update:
+            var currentSnapshot = diffableDataSource.snapshot()
+            currentSnapshot.reloadItems([contact])
+            diffableDataSource.apply(currentSnapshot)
+        case .delete:
+            var currentSnapshot = diffableDataSource.snapshot()
+            currentSnapshot.deleteItems([contact])
+            diffableDataSource.apply(currentSnapshot)
+        case .none:
+            break
+        }
+    }
+    
+    
     //MARK: - actions
     
     @objc private func addContactButtonTapped() {
@@ -116,12 +132,13 @@ final class ContactsViewController: UIViewController,UICollectionViewDelegate {
     //MARK: - collection view delegate
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
         if let contact = diffableDataSource.itemIdentifier(for: indexPath) {
             let showContactViewController = ShowContactViewController(coreDataInterface: coreDataInterface, isEditingContact: false,contact: contact)
+            showContactViewController.onContactStatusChange  = { [weak self] status,contact in
+                self?.updateContact(contact: contact, for: status)
+            }
             navigationController?.pushViewController(showContactViewController, animated: true)
         }
-        
     }
 
 }

@@ -21,6 +21,7 @@ struct Values {
     
     //MARK:- button
     static let buttonCornerRadius : CGFloat = 10
+    static let buttonPadding : CGFloat = 20
     
     //MARK:- text field
     static let textFieldCornerRadius : CGFloat = 10
@@ -31,12 +32,12 @@ struct Values {
     
     //MARK: - spacing
     static let viewSpasing : CGFloat = 20
+    static let bottomSpacing :CGFloat = 50
     
     //MARK:- collection view
     static let collectionViewPadding : CGFloat = 12
     static let collectionViewMinItemSpacing : CGFloat = 5
     static let collectionViewAdditionalItemHeight : CGFloat = 30
-    
     static let cellRadius : CGFloat = 10
     
     //MARK: - labels

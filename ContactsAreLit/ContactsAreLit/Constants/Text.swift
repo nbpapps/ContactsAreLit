@@ -33,4 +33,17 @@ struct Text {
     
     //MARK: - ids
     static let contactCellId = "contactCellId"
+    
+    //MARK: - queue tag
+    static let fetchContactQueueTag = "com.nbpapps.fetchContactQueueTag"
+    
+    //MARK: - buttons
+    static let deleteButton = "Delete Contact"
+    
+    //MARK: - alerts
+    static let deleteAlertTitle = "Delete Contact"
+    static let deleteAlertMessage = "Are you sure you want to delete this contact?"
+    static let deleteAction = "Delete"
+    
+    static let cancelAction = "Cancel"
 }
