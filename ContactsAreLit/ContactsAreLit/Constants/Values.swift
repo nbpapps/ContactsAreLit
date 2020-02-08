@@ -39,6 +39,7 @@ struct Values {
     static let collectionViewMinItemSpacing : CGFloat = 5
     static let collectionViewAdditionalItemHeight : CGFloat = 30
     static let cellRadius : CGFloat = 10
+    static let cellAlpha : CGFloat = 0.9
     
     //MARK: - labels
     static let minimumScaleFactor : CGFloat = 0.9

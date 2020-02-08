@@ -43,7 +43,11 @@ struct Text {
     //MARK: - alerts
     static let deleteAlertTitle = "Delete Contact"
     static let deleteAlertMessage = "Are you sure you want to delete this contact?"
-    static let deleteAction = "Delete"
     
+    static let missingInfoTitle = "Missing info"
+    static let missingInfoMessage = "Please fill Contact name and phone number"
+    
+    static let deleteAction = "Delete"
     static let cancelAction = "Cancel"
+    static let dismissAction = "OK"
 }

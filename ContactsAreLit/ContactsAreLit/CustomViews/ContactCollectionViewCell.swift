@@ -29,7 +29,7 @@ class ContactCollectionViewCell: UICollectionViewCell {
         addSubview(contactName)
         
         contentView.backgroundColor = UIColor(named: Text.mainAppColor)
-        contentView.alpha = 0.9
+        contentView.alpha = Values.cellAlpha
         contentView.layer.cornerRadius = Values.cellRadius
         
         NSLayoutConstraint.activate([
@@ -38,19 +38,10 @@ class ContactCollectionViewCell: UICollectionViewCell {
             contactImageView.widthAnchor.constraint(equalTo: contactImageView.heightAnchor),
             contactImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             
-//            contactImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Values.imageViewPadding),
-//            contactImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Values.imageViewPadding),
-//            contactImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant:-Values.imageViewPadding ),
-//            contactImageView.heightAnchor.constraint(equalToConstant: Values.imageViewHeight),
-            
             contactName.topAnchor.constraint(equalTo: contactImageView.bottomAnchor, constant:Values.viewSpasing),
             contactName.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Values.labelPadding),
             contactName.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Values.labelPadding),
             contactName.heightAnchor.constraint(equalToConstant: Values.labelHeight)
-            
         ])
-
     }
-
-    
 }

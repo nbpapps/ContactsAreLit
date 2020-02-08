@@ -53,11 +53,20 @@ final class AddContactViewController: ContactViewController {
     
     //MARK:-actions
     @objc private func saveButtonTapped() {
-        saveContact()
+        checkNameAndPhoneExist()
     }
     
     @objc private func cancelButtonTapped() {
         dismiss(animated: true, completion: nil)
+    }
+    
+    //MARK: - save contact
+    private func checkNameAndPhoneExist() {
+        if let name = nameTextField.text,let phone = phoneTextField.text,(!name.isEmpty && !phone.isEmpty) {
+            saveContact()
+        }else{
+            showMissingInfoAlert()
+        }
     }
     
     private func saveContact() {
@@ -73,5 +82,15 @@ final class AddContactViewController: ContactViewController {
                 self?.dismiss(animated: true) {}
             }
         }
+    }
+    
+    
+    //MARK: - show save alert
+    private func showMissingInfoAlert() {
+        let alert = UIAlertController(title: Text.missingInfoTitle, message: Text.missingInfoMessage, preferredStyle: .alert)
+        let dismiss = UIAlertAction(title: Text.cancelAction, style: .default, handler: nil)
+           
+        alert.addAction(dismiss)
+        self.present(alert, animated: true, completion: nil)
     }
 }

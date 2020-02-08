@@ -81,8 +81,7 @@ class ContactViewController: UIViewController {
             contactImageView.widthAnchor.constraint(equalTo: contactImageView.heightAnchor),
             contactImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
-            plusImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-//            plusImageView.trailingAnchor.constraint(equalTo: contactImageView.leadingAnchor, constant: -20),
+            plusImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Values.imageViewPadding),
             plusImageView.bottomAnchor.constraint(equalTo: contactImageView.bottomAnchor, constant: -Values.imageInImagePadding),
             
             selectPhotoButton.topAnchor.constraint(equalTo: contactImageView.topAnchor),
@@ -123,7 +122,6 @@ class ContactViewController: UIViewController {
             case .unauthorized:
                 print("no permission to select photos")
             }
-            
         }
     }
     

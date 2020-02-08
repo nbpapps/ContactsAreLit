@@ -57,7 +57,6 @@ final class CALTextField: UITextField {
         textColor = color
         
         placeholder = ""
-
     }
     
     private func configure() {

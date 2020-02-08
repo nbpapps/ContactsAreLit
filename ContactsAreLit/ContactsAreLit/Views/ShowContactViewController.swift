@@ -117,6 +117,7 @@ final class ShowContactViewController: ContactViewController {
         navigationItem.rightBarButtonItems = [saveButton,cancelButton]
     }
     
+    //MARK: - populate data
     private func populateContactInfo(contactInfo : Contact) {
         nameTextField.text = contactInfo.name
         phoneTextField.text = contactInfo.phone
@@ -173,8 +174,8 @@ final class ShowContactViewController: ContactViewController {
     
     //MARK: - show delete alert
     private func showDeleteAlert() {
-        let alert = UIAlertController(title: "Alert", message: "Message", preferredStyle: .alert)
-        let action = UIAlertAction(title: Text.deleteAlertTitle, style: .destructive) { [weak self](action) in
+        let alert = UIAlertController(title: Text.deleteAlertTitle, message: Text.deleteAlertMessage, preferredStyle: .alert)
+        let action = UIAlertAction(title: Text.deleteAction, style: .destructive) { [weak self](action) in
             self?.deleteContact()
         }
         let cancel = UIAlertAction(title: Text.cancelAction, style: .cancel, handler: nil)
@@ -242,5 +243,4 @@ extension ShowContactViewController {
 
         populateContactInfo(contactInfo: contact)
     }
-       
 }
