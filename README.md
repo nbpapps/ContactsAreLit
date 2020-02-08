@@ -9,8 +9,12 @@ Contacts list Screen
 * Each cell shows only the image and name
 
 Add Contact Screen
-* A placeholder image is shown at the top ((with an oopton to select an image))
+* A placeholder image is shown at the top with an option to select an image
 * User can enter name, phone and email in the relevent fields
+
+*Show Contact info
+* Shows the contact name, phone, email and image 
+* User can make a phone call from this screen
 
 
 Known issues and bugs
