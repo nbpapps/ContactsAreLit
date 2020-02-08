@@ -110,9 +110,7 @@ final class ContactsViewController: UIViewController,UICollectionViewDelegate {
         let addContactViewController = AddContactViewController(coreDataInterface: coreDataInterface, isEditingContact: true)
         let navController = UINavigationController(rootViewController: addContactViewController)
         navController.modalPresentationStyle = .fullScreen
-        present(navController, animated: true) {
-            
-        }
+        present(navController, animated: true)
     }
     
     //MARK: - fetch
